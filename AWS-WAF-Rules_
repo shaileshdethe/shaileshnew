@@ -1,0 +1,95 @@
+1. SQL Injection Detection 
+		C1.SQL_injection_match
+				Query string contains SQL injection threat after decoding as HTML.
+				Query string contains SQL injection threat after decoding as URL.
+				Body contains SQL injection threat after decoding as HTML.
+				Body contains SQL injection threat after decoding as URL.
+				URI contains SQL injection threat after decoding as HTML.
+				URI contains SQL injection threat after decoding as URL.
+				Authorization "Header" contains SQL injection threat after decoding as URL.
+				Authorization "Header" contains SQL injection threat after decoding as HTML.
+				Header 'via' contains SQL injection threat.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Cross-Site Scripting Detection
+		C1. XSS_scripting
+			URI contains cross-site scripting threat after decoding as URL.
+			URI contains cross-site scripting threat after decoding as HTML 
+			Body contains cross-site scripting threat after decoding as HTML .
+			Body contains cross-site scripting threat after decoding as URL.
+			Query string contains cross-site scripting threat after decoding as HTML .
+			Query string contains cross-site scripting threat after decoding as URL.
+			Header 'cookie' contains cross-site scripting threat after decoding as HTML 
+			Header 'cookie' contains cross-site scripting threat after decoding as HTML.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		C2. XSS_header
+			Header 'accept' contains a cross-site scripting threat.
+			Header 'cache-control' contains a cross-site scripting threat after removing whitespace characters.
+			Header 'cookie' contains a cross-site scripting threat after decoding as command line.
+			HTTP method contains a cross-site scripting threat after decoding as command line.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Srting match condition 
+		STRING MATCH
+		
+		C1. REGEX_string
+				Header 'cookie' contains: "example-session-id" after decoding as URL
+				Header 'authorization' Ends with: ".TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ" after decoding as URL
+				Query string contains: "auto_prepend_file=" after decoding as URL.
+				Query string contains: "allow_url_include=" after decoding as URL.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+  		C2. PHP_insecure_var
+  				Query string contains: "_SERVER[" after decoding as URL.
+  			 	Query string contains: "allow_url_include=" after decoding as URL.
+  			 	Query string contains: "_ENV[" after decoding as URL.
+  			 	Query string contains: "auto_prepend_file=" after decoding as URL.
+  			 	Query string contains: "safe_mode=" after decoding as URL.
+  			 	Query string contains: "disable_functions=" after decoding as URL.
+  			 	Query string contains: "open_basedir=" after decoding as URL.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+		C3. PHP-insecure-uri
+				 URI ends with: "/" after decoding as URL.
+			 	URI ends with: "php" after decoding as URL.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		C5. PathTraversal_LFI_RFI (include local file and include remote file)	
+				Query string contains: "://" after decoding as HTML tags.
+				Query string contains: "../" after decoding as HTML tags.
+				Query string contains: "://" after decoding as URL.
+				Query string contains: "../" after decoding as URL.
+				URI contains: "../" after decoding as HTML tags.
+				URI contains: "://" after decoding as HTML tags.
+				URI contains: "://" after decoding as URL.
+				URI contains: "../" after decoding as URL.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+		C6. ServerSideIncludes_match
+				URI ends with: ".conf" after converting to lowercase.
+				URI ends with: ".config" after converting to lowercase.
+				URI ends with: ".ini" after converting to lowercase.
+				URI ends with: ".backup" after converting to lowercase.
+				URI ends with: ".cfg" after converting to lowercase.
+				URI ends with: ".bak" after converting to lowercase.
+				URI ends with: ".log" after converting to lowercase.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Size Constrain
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+5. Geo Location
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+XSS_scripting_rule
+match-csrf-method_rule
+php-insecure-uri_rule
+php_insecure_var_rule
+test_regex_string_rule
+Path_Traversal_lfi_rfi_rule 
+Match_ServerSideIncludes_rule
+SQL_inj_match_rule
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+##C4. match-csrf-method
+				HTTP method matches exactly to: "post" after converting to lowercase.
